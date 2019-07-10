@@ -1,16 +1,16 @@
 import React from "react"
-import Layout from "../components/layout"
 import { Link } from "gatsby"
+import Layout from "../components/layout"
 
-export default function Deep({ data }) {
+export default function Musings({ data }) {
   const { edges: posts } = data.allMarkdownRemark
   return (
     <Layout>
     <div className="blog-posts">
-      <p>Anything I create that seems worth sharing.</p>
+      <p>Random thoughts that I have on various subjects.  Varying quality.</p>
       {posts
         .filter(post => post.node.frontmatter.title.length > 0)
-        .filter(post => post.node.frontmatter.path.includes('deeper'))
+        .filter(post => post.node.frontmatter.path.includes('musings'))
         .map(({ node: post }) => {
           return (
             <div className="blog-post-preview" key={post.id}>
@@ -26,7 +26,7 @@ export default function Deep({ data }) {
 }
 
 export const pageQuery = graphql`
-  query DeepQuery {
+  query MusingsQuery {
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }
                       ) {
       edges {
